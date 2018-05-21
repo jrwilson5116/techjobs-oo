@@ -25,10 +25,10 @@ public class JobController {
     // The detail display for a given Job at URLs like /job?id=17
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, int id) {
-        // TODO #1 - get the Job with the given ID and pass it into the view
+
         Job job = jobData.findById(id);
 
-        HashMap<String,String> result = new HashMap<String,String>(5);
+        HashMap<String,String> result = new HashMap<String,String>();
 
         result.put("Name",job.getName());
         result.put("Employer",job.getEmployer().toString());
@@ -37,6 +37,7 @@ public class JobController {
         result.put("Skill",job.getCoreCompetency().toString());
 
         model.addAttribute("job",result);
+
         return "job-detail";
     }
 
