@@ -1,5 +1,6 @@
 package org.launchcode.controllers;
 
+import org.launchcode.models.Job;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by LaunchCode
@@ -22,9 +25,18 @@ public class JobController {
     // The detail display for a given Job at URLs like /job?id=17
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, int id) {
-
         // TODO #1 - get the Job with the given ID and pass it into the view
+        Job job = jobData.findById(id);
 
+        HashMap<String,String> result = new HashMap<String,String>(5);
+
+        result.put("Name",job.getName());
+        result.put("Employer",job.getEmployer().toString());
+        result.put("Location",job.getLocation().toString());
+        result.put("Position Type", job.getPositionType().toString());
+        result.put("Skill",job.getCoreCompetency().toString());
+
+        model.addAttribute("job",result);
         return "job-detail";
     }
 
