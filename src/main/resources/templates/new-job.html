@@ -25,7 +25,6 @@
             </select>
         </div>
 
-        <!-- TODO #5 - Create <select> dropdowns for other job fields -->
 
         <div class="form-group">
             <label th:for="locationId">Location</label>
@@ -50,9 +49,9 @@
         <div class="form-group">
             <label th:for="positionId">Location</label>
             <select th:field="*{positionId}">
-                <option th:each="position : *{positions}"
-                        th:value="${position.id}"
-                        th:text="${position.value}"></option>
+                <option th:each="positionType : *{positionTypes}"
+                        th:value="${positionType.id}"
+                        th:text="${positionType.value}"></option>
             </select>
         </div>
 
