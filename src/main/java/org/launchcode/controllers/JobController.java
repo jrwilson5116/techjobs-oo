@@ -54,6 +54,11 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
+        if(errors.hasErrors()){
+            return "new-job";
+        }
+
+
         Job newJob = new Job();
 
         newJob.setName(jobForm.getName());
@@ -64,7 +69,7 @@ public class JobController {
 
         jobData.add(newJob);
 
-        return "new-job";
+        return "redirect:?id="+newJob.getId();
 
     }
 }
